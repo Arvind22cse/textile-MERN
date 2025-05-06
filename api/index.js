@@ -27,7 +27,7 @@ mongoose.connect(url, {
   .catch(err => console.error("Database connection error:", err));
 
 // Global middlewares
-app.use(cors());
+app.use(cors("https://textile-mern.vercel.app/"));
 app.use(express.json());
 app.use(handleMalformedJson); 
 app.use("/uploads", express.static("uploads"));
