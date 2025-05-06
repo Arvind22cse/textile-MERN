@@ -8,7 +8,7 @@ function Managereq() {
   useEffect(() => {
     const fetchRequests = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/request/get-requests");
+        const res = await axios.get("https://textile-mern.onrender.com/request/get-requests");
         setRequests(res.data);
       } catch (error) {
         console.error("Failed to fetch requests:", error);

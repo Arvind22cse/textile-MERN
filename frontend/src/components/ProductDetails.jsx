@@ -22,7 +22,7 @@ const ProductDetails = () => {
   const [averageRating, setAverageRating] = useState(0);
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/reviews/average/${productId}`)
+    axios.get(`https://textile-mern.onrender.com/reviews/average/${productId}`)
       .then((res) => setAverageRating(res.data.averageRating))
       .catch((err) => console.error("Error fetching avg rating:", err));
   }, [productId]);
@@ -58,7 +58,7 @@ const ProductDetails = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/products/${productId}`)
+      .get(`https://textile-mern.onrender.com/products/${productId}`)
       .then((response) => {
         const productData = response.data;
         const formattedProduct = {
@@ -149,7 +149,7 @@ const ProductDetails = () => {
       handler: async function (response) {
         try {
           // 1. Save payment info
-          await axios.post("http://localhost:5000/userprod/create", {
+          await axios.post("https://textile-mern.onrender.com/userprod/create", {
             razorpay_order_id: response.razorpay_order_id,
             razorpay_payment_id: response.razorpay_payment_id,
             // razorpay_signature: response.razorpay_signature,
@@ -167,7 +167,7 @@ const ProductDetails = () => {
           });
   
           // 2. Save order details
-          // await axios.post("http://localhost:5000/userprod/create", {
+          // await axios.post("https://textile-mern.onrender.com/userprod/create", {
           //   name: username,
           //   email: useremail,
           //   shippingaddress: userDetails.address,
@@ -224,7 +224,7 @@ const ProductDetails = () => {
         {/* Product Image */}
         <div>
           <img
-            src={`http://localhost:5000/uploads/${product.image}`}
+            src={`https://textile-mern.onrender.com/uploads/${product.image}`}
             alt={product.name}
             className="w-full max-h-[500px] object-contain rounded-lg shadow-lg"
           />

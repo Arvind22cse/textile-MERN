@@ -20,7 +20,7 @@ const ProductsPage = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/products");
+        const res = await axios.get("https://textile-mern.onrender.com/products");
         setProducts(res.data);
 
         const styles = [...new Set(res.data.map(p => p.style).filter(Boolean))];
@@ -197,7 +197,7 @@ const ProductsPage = () => {
               className="border p-4 rounded-lg shadow hover:shadow-lg transition-shadow"
             >
               <img
-                src={`http://localhost:5000/uploads/${product.image}`}
+                src={`https://textile-mern.onrender.com/uploads/${product.image}`}
                 alt={product.title}
                 className="w-full h-64 object-cover rounded-lg"
               />

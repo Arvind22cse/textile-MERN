@@ -14,7 +14,7 @@ const Register = ({ handleCloseClick }) => {
     };
     console.log(data);
     try {
-      const response = await axios.post('http://localhost:5000/auth/register', data, {
+      const response = await axios.post('https://textile-mern.onrender.com/auth/register', data, {
         headers: {
           'Content-Type': 'application/json'
         }

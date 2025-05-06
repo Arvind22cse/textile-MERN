@@ -24,7 +24,7 @@ const [quantityInput, setQuantityInput] = useState("");
           return;
         }
   
-        const response = await axios.get(`http://localhost:5000/userprod/orders/${loggedInUser.email}`);
+        const response = await axios.get(`https://textile-mern.onrender.com/userprod/orders/${loggedInUser.email}`);
         setUsers(response.data);
         setLoading(false);
       } catch (error) {
@@ -84,7 +84,7 @@ const [quantityInput, setQuantityInput] = useState("");
                       <div className="flex items-start gap-4">
                         {p?.image && (
                           <img
-                            src={`http://localhost:5000/uploads/${p.image}`}
+                            src={`https://textile-mern.onrender.com/uploads/${p.image}`}
                             alt={p?.title}
                             className="w-20 h-20 object-cover rounded"
                           />
@@ -162,7 +162,7 @@ const [quantityInput, setQuantityInput] = useState("");
             }
 
             try {
-              const res = await axios.post("http://localhost:5000/request/request-quantity", {
+              const res = await axios.post("https://textile-mern.onrender.com/request/request-quantity", {
                 userId: selectedUser._id,
                 productId: selectedProduct._id,
                 orderId: selectedUser._id,
@@ -197,7 +197,7 @@ const [quantityInput, setQuantityInput] = useState("");
       const confirmDelete = window.confirm("Are you sure you want to cancel this order?");
       if (!confirmDelete) return;
 
-      await axios.delete(`http://localhost:5000/userprod/delete/${user._id}`);
+      await axios.delete(`https://textile-mern.onrender.com/userprod/delete/${user._id}`);
       setUsers(users.filter((u) => u._id !== user._id));
       toast.success("Order cancelled successfully",{transition: Bounce});
     } catch (error) {

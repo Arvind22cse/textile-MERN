@@ -75,7 +75,7 @@ const CartPage = () => {
             quantity: item.quantity
           }));
 
-          await axios.post("http://localhost:5000/userprod/create", {
+          await axios.post("https://textile-mern.onrender.com/userprod/create", {
             razorpay_payment_id: response.razorpay_payment_id,
             name: username,
             email: useremail,
@@ -127,7 +127,7 @@ const CartPage = () => {
           {cartItems.map((item) => (
             <div key={item.id} className="flex flex-col md:flex-row bg-white shadow rounded-lg p-4">
               <img
-                src={`http://localhost:5000/uploads/${item.image}`}
+                src={`https://textile-mern.onrender.com/uploads/${item.image}`}
                 alt={item.name}
                 className="w-32 h-32 object-cover rounded mr-4"
               />

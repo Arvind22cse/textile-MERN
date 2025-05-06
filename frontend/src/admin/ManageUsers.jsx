@@ -4,14 +4,14 @@ const ManageUsers = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/admin/users") // Update with your API endpoint
+    fetch("https://textile-mern.onrender.com/admin/users") // Update with your API endpoint
       .then((res) => res.json())
       .then((data) => setUsers(data))
       .catch((error) => console.error("Error fetching users:", error));
   }, []);
 
   const deleteUser = (userId) => {
-    fetch(`http://localhost:5000/admin/users/${userId}`, { method: "DELETE" })
+    fetch(`https://textile-mern.onrender.com/admin/users/${userId}`, { method: "DELETE" })
       .then(() => setUsers(users.filter(user => user.id !== userId)))
       .catch(error => console.error("Error deleting user:", error));
   };

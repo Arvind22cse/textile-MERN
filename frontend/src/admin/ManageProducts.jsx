@@ -34,7 +34,7 @@ const ManageProducts = () => {
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/products", getAuthHeaders());
+      const res = await axios.get("https://textile-mern.onrender.com/products", getAuthHeaders());
       setProducts(res.data);
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -60,12 +60,12 @@ const ManageProducts = () => {
       });
 
       if (editingId) {
-        await axios.put(`http://localhost:5000/products/${editingId}`, formData, {
+        await axios.put(`https://textile-mern.onrender.com/products/${editingId}`, formData, {
           headers: { "Content-Type": "multipart/form-data", ...getAuthHeaders().headers },
         });
         setEditingId(null);
       } else {
-        await axios.post("http://localhost:5000/products/", formData, {
+        await axios.post("https://textile-mern.onrender.com/products/", formData, {
           headers: { "Content-Type": "multipart/form-data", ...getAuthHeaders().headers },
         });
       }
@@ -89,13 +89,13 @@ const ManageProducts = () => {
       image: null,
     });
     setEditingId(product._id);
-    setPreviewImage(`http://localhost:5000/uploads/${product.image}`);
+    setPreviewImage(`https://textile-mern.onrender.com/uploads/${product.image}`);
     toast.success("You can edit the product now!.See Top", { transition: Bounce });
   };
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/products/${id}`, getAuthHeaders());
+      await axios.delete(`https://textile-mern.onrender.com/products/${id}`, getAuthHeaders());
       fetchProducts();
     } catch (error) {
       console.error("Error deleting product:", error);

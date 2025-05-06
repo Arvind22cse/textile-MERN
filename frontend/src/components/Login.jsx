@@ -14,7 +14,7 @@ const Login = ({ handleCloseClick, handleLoginSuccess }) => {
     const email = event.target.username.value;
     const password = event.target.password.value;
     try {
-      const response = await axios.post("http://localhost:5000/auth/login", {email, password });
+      const response = await axios.post("https://textile-mern.onrender.com/auth/login", {email, password });
       const { accessToken, isAdmin } = response.data;
       const loginstatus = response.data.islogin;
       localStorage.setItem("user", JSON.stringify({ email: email, name: response.data.name }));

@@ -26,7 +26,7 @@ const ReviewPage = () => {
       rating: selectedRating,
     });
 
-    fetch("http://localhost:5000/reviews/create", {
+    fetch("https://textile-mern.onrender.com/reviews/create", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

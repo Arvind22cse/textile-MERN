@@ -7,7 +7,7 @@ const AdminUserOrders = () => {
   useEffect(() => {
     const fetchUserOrders = async () => {
       try {
-        const res = await fetch("http://localhost:5000/userprod/getuser");
+        const res = await fetch("https://textile-mern.onrender.com/userprod/getuser");
         const data = await res.json();
         console.log("All user orders:", data);
         setUsers(data);
@@ -65,7 +65,7 @@ const AdminUserOrders = () => {
                       <div className="flex items-start gap-4">
                         {p?.image && (
                           <img
-                            src={`http://localhost:5000/uploads/${p.image}`}
+                            src={`https://textile-mern.onrender.com/uploads/${p.image}`}
                             alt={p?.title}
                             className="w-20 h-20 object-cover rounded"
                           />

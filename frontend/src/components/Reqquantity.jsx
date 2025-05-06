@@ -23,7 +23,7 @@ const Reqquantity = () => {
       quantity,
     });
 
-    fetch("http://localhost:5000/requested-quantity", {
+    fetch("https://textile-mern.onrender.com/requested-quantity", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

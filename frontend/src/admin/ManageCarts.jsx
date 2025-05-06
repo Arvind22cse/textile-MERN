@@ -4,7 +4,7 @@ const ManageCarts = () => {
   const [carts, setCarts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/admin/carts") // Update with your API endpoint
+    fetch("https://textile-mern.onrender.com/admin/carts") // Update with your API endpoint
       .then((res) => res.json())
       .then((data) => setCarts(data))
       .catch((error) => console.error("Error fetching carts:", error));

@@ -4,7 +4,7 @@ const ManagePayments = () => {
   const [payments, setPayments] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/admin/payments") // Update with your API endpoint
+    fetch("https://textile-mern.onrender.com/admin/payments") // Update with your API endpoint
       .then((res) => res.json())
       .then((data) => setPayments(data))
       .catch((error) => console.error("Error fetching payments:", error));

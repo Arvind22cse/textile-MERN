@@ -9,7 +9,7 @@ const ProductGrid = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/products/latest");
+        const res = await axios.get("https://textile-mern.onrender.com/products/latest");
         setProducts(res.data);
       } catch (err) {
         console.error("Error fetching products:", err);
@@ -28,7 +28,7 @@ const ProductGrid = () => {
         <Link key={product._id} to={`/product/${product._id}`}>
           <div className="border h-[280px] p-4 rounded-lg shadow-lg bg-white cursor-pointer">
             <img
-              src={`http://localhost:5000/uploads/${product.image}` || "/placeholder.jpg"}
+              src={`https://textile-mern.onrender.com/uploads/${product.image}` || "/placeholder.jpg"}
               alt={product.title}
               className="w-full h-40 object-cover rounded"
             />
