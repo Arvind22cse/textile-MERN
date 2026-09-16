@@ -12,26 +12,46 @@ const orderRouter = require('./routes/order');
 const checkoutRouter = require('./routes/checkout');
 const userprod = require('./routes/userproduct');
 const reviewRoutes = require("./routes/Reviewrotes");
+const aiRouter = require('./routes/ai');
 const { handleMalformedJson } = require('./middlewares/handleError');
-const requestRouter = require('./routes/request.js'); // Assuming you have a request router
+const requestRouter = require('./routes/request.js');
 
 const app = express();
 
-// MongoDB connection
+// MongoDB connection — URI stored in .env (never hardcode credentials in source)
 mongoose.set('strictQuery', true);
-const url = "mongodb+srv://arvindm22cse:31-Aug-04@kumartextiles.iw7hdi2.mongodb.net/?retryWrites=true&w=majority&appName=Kumartextiles";
-mongoose.connect(url, {
+const mongoUri = process.env.MONGODB_URI;
+if (!mongoUri) {
+  console.error("FATAL: MONGODB_URI environment variable is not set. Please add it to .env");
+  process.exit(1);
+}
+mongoose.connect(mongoUri, {
   useUnifiedTopology: true,
   useNewUrlParser: true
 }).then(() => console.log("Connected to database"))
   .catch(err => console.error("Database connection error:", err));
 
-// Global middlewares
-app.use(cors("https://textile-mern.vercel.app/"));
-app.use(express.json());
-app.use(handleMalformedJson); 
+// CORS — allow both local dev and production Vercel frontend
+const allowedOrigins = [
+  "https://textile-mern.vercel.app",
+  "http://localhost:5173",
+  "http://localhost:3000",
+];
+app.use(cors({
+  origin: (origin, callback) => {
+    // Allow requests with no origin (curl, Postman, same-origin)
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+}));
+
+app.use(express.json({ limit: "2mb" }));
+app.use(handleMalformedJson);
 app.use("/uploads", express.static("uploads"));
-// Handle common req errors
 
 // Routes
 app.use("/auth", authRouter);
@@ -42,13 +62,14 @@ app.use("/orders", orderRouter);
 app.use("/checkout", checkoutRouter);
 app.use("/userprod", userprod);
 app.use("/reviews", reviewRoutes);
-app.use("/request", requestRouter); // Add this line to include the request router
-// app.use("/my",orderRouter);
+app.use("/request", requestRouter);
+app.use("/api/ai", aiRouter);  // TextileAI chat endpoint
+
 // Server status
 app.get("/", (req, res) => {
-  res.json({ status: "ok" });
+  res.json({ status: "ok", service: "Kumar Textiles API" });
 });
 
-app.listen(process.env.PORT || 5000, () => {
-  console.log(`Listening on port ${process.env.PORT || 5000}`);
+app.listen(process.env.PORT || 5001, () => {
+  console.log(`Listening on port ${process.env.PORT || 5001}`);
 });
