@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import API_BASE from "../config";
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
@@ -20,7 +21,7 @@ const ProductsPage = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("https://textile-mern.onrender.com/products");
+        const res = await axios.get(`${API_BASE}/products`);
         setProducts(res.data);
 
         const styles = [...new Set(res.data.map(p => p.style).filter(Boolean))];
@@ -197,7 +198,7 @@ const ProductsPage = () => {
               className="border p-4 rounded-lg shadow hover:shadow-lg transition-shadow"
             >
               <img
-                src={`https://textile-mern.onrender.com/uploads/${product.image}`}
+                src={`${API_BASE}/uploads/${product.image}`}
                 alt={product.title}
                 className="w-full h-64 object-cover rounded-lg"
               />

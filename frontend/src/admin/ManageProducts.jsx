@@ -3,6 +3,7 @@ import axios from "axios";
 import ProductCard from "./ProductCard";
 import { toast, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import API_BASE from "../config";
 
 const colorOptions = ["Black", "Blue", "Brown", "Cream", "Green", "Grey", "Navy", "OffWhite", "Sandal", "Violet", "White"];
 const styleOptions = ["Checked Fabrics", "Plain Fabrics", "Self Design Fabrics"];
@@ -34,7 +35,7 @@ const ManageProducts = () => {
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get("https://textile-mern.onrender.com/products", getAuthHeaders());
+      const res = await axios.get(`${API_BASE}/products`, getAuthHeaders());
       setProducts(res.data);
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -60,12 +61,12 @@ const ManageProducts = () => {
       });
 
       if (editingId) {
-        await axios.put(`https://textile-mern.onrender.com/products/${editingId}`, formData, {
+        await axios.put(`${API_BASE}/products/${editingId}`, formData, {
           headers: { "Content-Type": "multipart/form-data", ...getAuthHeaders().headers },
         });
         setEditingId(null);
       } else {
-        await axios.post("https://textile-mern.onrender.com/products/", formData, {
+        await axios.post(`${API_BASE}/products/`, formData, {
           headers: { "Content-Type": "multipart/form-data", ...getAuthHeaders().headers },
         });
       }
@@ -89,13 +90,13 @@ const ManageProducts = () => {
       image: null,
     });
     setEditingId(product._id);
-    setPreviewImage(`https://textile-mern.onrender.com/uploads/${product.image}`);
+    setPreviewImage(`${API_BASE}/uploads/${product.image}`);
     toast.success("You can edit the product now!.See Top", { transition: Bounce });
   };
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://textile-mern.onrender.com/products/${id}`, getAuthHeaders());
+      await axios.delete(`${API_BASE}/products/${id}`, getAuthHeaders());
       fetchProducts();
     } catch (error) {
       console.error("Error deleting product:", error);

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { toast, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import API_BASE from "../config";
 const Reqquantity = () => {
   const location = useLocation();
   const { product, userId, orderId } = location.state;
@@ -23,7 +24,7 @@ const Reqquantity = () => {
       quantity,
     });
 
-    fetch("https://textile-mern.onrender.com/requested-quantity", {
+    fetch(`${API_BASE}/requested-quantity`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

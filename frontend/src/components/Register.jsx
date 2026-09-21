@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { toast, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import API_BASE from "../config";
 const Register = ({ handleCloseClick }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -14,7 +15,7 @@ const Register = ({ handleCloseClick }) => {
     };
     console.log(data);
     try {
-      const response = await axios.post('https://textile-mern.onrender.com/auth/register', data, {
+      const response = await axios.post(`${API_BASE}/auth/register`, data, {
         headers: {
           'Content-Type': 'application/json'
         }

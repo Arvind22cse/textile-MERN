@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
+import API_BASE from "../config";
 
 const ManagePayments = () => {
   const [payments, setPayments] = useState([]);
 
   useEffect(() => {
-    fetch("https://textile-mern.onrender.com/admin/payments") // Update with your API endpoint
+    fetch(`${API_BASE}/admin/payments`) // Update with your API endpoint
       .then((res) => res.json())
       .then((data) => setPayments(data))
       .catch((error) => console.error("Error fetching payments:", error));

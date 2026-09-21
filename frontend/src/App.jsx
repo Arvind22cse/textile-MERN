@@ -15,7 +15,9 @@ import Contactus from "./components/Contactus";
 import ReviewPage from "./components/Review";
 import Reqquantity from "./components/Reqquantity";
 import Managereq from "./admin/Managereq";
+import TextileAI from "./components/TextileAI";
 import { ToastContainer } from 'react-toastify';
+
 const App = () => {
   return (
     <>
@@ -38,8 +40,9 @@ const App = () => {
         <Route path="/admin/products" element={<ManageProducts />} />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/req" element={<Managereq />} />
-
       </Routes>
+      {/* TextileAI — floating shopping assistant (visible on all pages) */}
+      <TextileAI />
     </>
   );
 };

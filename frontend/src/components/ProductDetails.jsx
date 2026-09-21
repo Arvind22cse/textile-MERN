@@ -4,6 +4,7 @@ import axios from "axios";
 import img from '../../../api/uploads/sg.png'
 import { toast, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import API_BASE from "../config";
 import {
   FaShippingFast,
   FaUndo,
@@ -22,7 +23,7 @@ const ProductDetails = () => {
   const [averageRating, setAverageRating] = useState(0);
 
   useEffect(() => {
-    axios.get(`https://textile-mern.onrender.com/reviews/average/${productId}`)
+    axios.get(`${API_BASE}/reviews/average/${productId}`)
       .then((res) => setAverageRating(res.data.averageRating))
       .catch((err) => console.error("Error fetching avg rating:", err));
   }, [productId]);
@@ -58,7 +59,7 @@ const ProductDetails = () => {
 
   useEffect(() => {
     axios
-      .get(`https://textile-mern.onrender.com/products/${productId}`)
+      .get(`${API_BASE}/products/${productId}`)
       .then((response) => {
         const productData = response.data;
         const formattedProduct = {
@@ -149,7 +150,7 @@ const ProductDetails = () => {
       handler: async function (response) {
         try {
           // 1. Save payment info
-          await axios.post("https://textile-mern.onrender.com/userprod/create", {
+          await axios.post(`${API_BASE}/userprod/create`, {
             razorpay_order_id: response.razorpay_order_id,
             razorpay_payment_id: response.razorpay_payment_id,
             // razorpay_signature: response.razorpay_signature,
@@ -167,7 +168,7 @@ const ProductDetails = () => {
           });
   
           // 2. Save order details
-          // await axios.post("https://textile-mern.onrender.com/userprod/create", {
+          // await axios.post(`${API_BASE}/userprod/create`, {
           //   name: username,
           //   email: useremail,
           //   shippingaddress: userDetails.address,
@@ -224,7 +225,7 @@ const ProductDetails = () => {
         {/* Product Image */}
         <div>
           <img
-            src={`https://textile-mern.onrender.com/uploads/${product.image}`}
+            src={`${API_BASE}/uploads/${product.image}`}
             alt={product.name}
             className="w-full max-h-[500px] object-contain rounded-lg shadow-lg"
           />

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import API_BASE from "../config";
 
 const AdminUserOrders = () => {
   const [users, setUsers] = useState([]);
@@ -7,7 +8,7 @@ const AdminUserOrders = () => {
   useEffect(() => {
     const fetchUserOrders = async () => {
       try {
-        const res = await fetch("https://textile-mern.onrender.com/userprod/getuser");
+        const res = await fetch(`${API_BASE}/userprod/getuser`);
         const data = await res.json();
         console.log("All user orders:", data);
         setUsers(data);
@@ -65,7 +66,7 @@ const AdminUserOrders = () => {
                       <div className="flex items-start gap-4">
                         {p?.image && (
                           <img
-                            src={`https://textile-mern.onrender.com/uploads/${p.image}`}
+                            src={`${API_BASE}/uploads/${p.image}`}
                             alt={p?.title}
                             className="w-20 h-20 object-cover rounded"
                           />

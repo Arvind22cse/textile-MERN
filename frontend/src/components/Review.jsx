@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
+import API_BASE from "../config";
 
 const ReviewPage = () => {
   const location = useLocation();
@@ -26,7 +27,7 @@ const ReviewPage = () => {
       rating: selectedRating,
     });
 
-    fetch("https://textile-mern.onrender.com/reviews/create", {
+    fetch(`${API_BASE}/reviews/create`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

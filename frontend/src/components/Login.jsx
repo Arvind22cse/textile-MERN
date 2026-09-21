@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import API_BASE from "../config";
 
 const Login = ({ handleCloseClick, handleLoginSuccess }) => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const Login = ({ handleCloseClick, handleLoginSuccess }) => {
     const email = event.target.username.value;
     const password = event.target.password.value;
     try {
-      const response = await axios.post("https://textile-mern.onrender.com/auth/login", {email, password });
+      const response = await axios.post(`${API_BASE}/auth/login`, {email, password });
       const { accessToken, isAdmin } = response.data;
       const loginstatus = response.data.islogin;
       localStorage.setItem("user", JSON.stringify({ email: email, name: response.data.name }));

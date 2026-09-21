@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
+import API_BASE from "../config";
 
 const ManageUsers = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch("https://textile-mern.onrender.com/admin/users") // Update with your API endpoint
+    fetch(`${API_BASE}/admin/users`) // Update with your API endpoint
       .then((res) => res.json())
       .then((data) => setUsers(data))
       .catch((error) => console.error("Error fetching users:", error));
   }, []);
 
   const deleteUser = (userId) => {
-    fetch(`https://textile-mern.onrender.com/admin/users/${userId}`, { method: "DELETE" })
+    fetch(`${API_BASE}/admin/users/${userId}`, { method: "DELETE" })
       .then(() => setUsers(users.filter(user => user.id !== userId)))
       .catch(error => console.error("Error deleting user:", error));
   };

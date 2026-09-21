@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import API_BASE from "../config";
 
 function Managereq() {
   const [requests, setRequests] = useState([]);
@@ -8,7 +9,7 @@ function Managereq() {
   useEffect(() => {
     const fetchRequests = async () => {
       try {
-        const res = await axios.get("https://textile-mern.onrender.com/request/get-requests");
+        const res = await axios.get(`${API_BASE}/request/get-requests`);
         setRequests(res.data);
       } catch (error) {
         console.error("Failed to fetch requests:", error);

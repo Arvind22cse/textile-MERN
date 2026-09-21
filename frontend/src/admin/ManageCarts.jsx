@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
+import API_BASE from "../config";
 
 const ManageCarts = () => {
   const [carts, setCarts] = useState([]);
 
   useEffect(() => {
-    fetch("https://textile-mern.onrender.com/admin/carts") // Update with your API endpoint
+    fetch(`${API_BASE}/admin/carts`) // Update with your API endpoint
       .then((res) => res.json())
       .then((data) => setCarts(data))
       .catch((error) => console.error("Error fetching carts:", error));

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import API_BASE from "../config";
 
 const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -75,7 +76,7 @@ const CartPage = () => {
             quantity: item.quantity
           }));
 
-          await axios.post("https://textile-mern.onrender.com/userprod/create", {
+          await axios.post(`${API_BASE}/userprod/create`, {
             razorpay_payment_id: response.razorpay_payment_id,
             name: username,
             email: useremail,
@@ -127,7 +128,7 @@ const CartPage = () => {
           {cartItems.map((item) => (
             <div key={item.id} className="flex flex-col md:flex-row bg-white shadow rounded-lg p-4">
               <img
-                src={`https://textile-mern.onrender.com/uploads/${item.image}`}
+                src={`${API_BASE}/uploads/${item.image}`}
                 alt={item.name}
                 className="w-32 h-32 object-cover rounded mr-4"
               />

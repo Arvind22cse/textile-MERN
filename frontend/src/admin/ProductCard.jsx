@@ -1,10 +1,11 @@
 import React from "react";
+import API_BASE from "../config";
 
 const ProductCard = ({ product, handleEditClick, deleteProduct }) => {
   return (
     <div className="border p-4 rounded-lg shadow-lg bg-white">
       <img
-        src={`https://textile-mern.onrender.com/uploads/${product.image}`}
+        src={`${API_BASE}/uploads/${product.image}`}
         alt={product.title}
         className="w-full h-40 object-cover rounded"
       />

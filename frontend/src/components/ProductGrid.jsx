@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import API_BASE from "../config";
 
 const ProductGrid = () => {
   const [products, setProducts] = useState([]);
@@ -9,7 +10,7 @@ const ProductGrid = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("https://textile-mern.onrender.com/products/latest");
+        const res = await axios.get(`${API_BASE}/products/latest`);
         setProducts(res.data);
       } catch (err) {
         console.error("Error fetching products:", err);
@@ -28,7 +29,7 @@ const ProductGrid = () => {
         <Link key={product._id} to={`/product/${product._id}`}>
           <div className="border h-[280px] p-4 rounded-lg shadow-lg bg-white cursor-pointer">
             <img
-              src={`https://textile-mern.onrender.com/uploads/${product.image}` || "/placeholder.jpg"}
+              src={`${API_BASE}/uploads/${product.image}` || "/placeholder.jpg"}
               alt={product.title}
               className="w-full h-40 object-cover rounded"
             />
